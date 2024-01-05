@@ -1,3 +1,4 @@
+# In ansible, if you attempt to print a variable that is not declared, ANSIBLE throws an exception!
 - name: Demo on variable usage
   hosts: all
   vars:
@@ -6,3 +7,9 @@
     - name: Printing the variable
       ansible.builtin.debug:
         msg: Value of the URL is {{URL}}             # In bash, we print a variable by using ${var}, but here in YAML we use {{var}}
+
+    - name: Printing the variable
+      ansible.builtin.debug:
+        msg: Value of the URL is {{URL}}             # In bash, we print a variable by using ${var}, but here in YAML we use {{var}}
+        vars:                                        # Declaring variable at task level : local variables
+          URL: task.google.com
