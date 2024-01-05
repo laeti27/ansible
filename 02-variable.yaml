@@ -1,0 +1,8 @@
+- name: Demo on variable usage
+  hosts: all
+  vars:
+    URL: play.google.com
+  tasks: 
+    - name: Printing the variable
+      ansible.builtin.debug:
+        msg: Value of the URL is {{URL}}             # In bash, we print a variable by using ${var}, but here in YAML we use {{var}}

@@ -67,3 +67,6 @@ Ansible can be operates in 2 ways
 
   Markup Language is a Presentation Language !!!
     Ex: html, xml
+
+## how to run ansible-playbooks?
+   $ ansible-playbook -i inv -e ansible_user=centos  -e ansible_password=DevOps321 playBookName.yaml
