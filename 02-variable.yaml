@@ -2,7 +2,9 @@
 - name: Demo on variable usage
   hosts: all
   vars:
-    URL: play.google.com
+    URL: play.google.com                         # Declaring variable at playlevel, all the task of this play inherits this value. 
+  vars_files:
+    - "{{ENV}}.yaml"  
   tasks: 
     - name: Printing the variable
       ansible.builtin.debug:
@@ -11,8 +13,20 @@
     - name: Printing the variable
       ansible.builtin.debug:
         msg: Value of the URL is {{URL}}             # In bash, we print a variable by using ${var}, but here in YAML we use {{var}}
-      vars:                                        # Declaring variable at task level : local variables
-        URL: task.google.com
+      vars:                                          # Declaring variable at task level : local variables
+        URL: task.google.com 
+
+    - name: Printing the Variable From Command Line
+      ansible.builtin.debug:
+        msg: Value of the xyz is {{xyz}}
+
+    - name: Printing the Variable From Command Line
+      ansible.builtin.debug:
+        msg: Value of the xyz is {{xyz}}               # In bash, we print a variable by using ${var}, but here in YAML we use {{var}} 
+
+    - name: Printing ENV Specific values
+      ansible.builtin.debug:
+        msg: "Instance Type is {{INSTANCE_TYPE}} and disk size is {{DISK_SIZE}}"               # In bash, we print a variable by using ${var}, but here in YAML we use {{var}} 
 
 # -name: Printing the unknown variable
 #  ansible.builtin.debug:
